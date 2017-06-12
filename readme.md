@@ -12,5 +12,5 @@ A quick way of copying supplementals from one instructor to another.
 * Save the file and run `node app.js`
 
 #### Using the App
-* Click Refresh to get latest Supplemental list
+* Click the `Refresh` button to get latest Supplemental list
 * Click the `Clone` button near the desired supplemental to create a copy for your own personal supplemental list
