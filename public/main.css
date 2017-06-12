@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#refreshBtn {
+  background: white;
+  color: grey;
+  max-width: 40vw;
+  outline: none;
+  border: 1px solid black;
+  padding: 2vw;
+}
+
+#refreshBtn:hover {
+  box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.75);
+}
+
+.item-container {
+  border: 1px solid black;
+  display: flex;
+  justify-content: flex-end;
+  max-height: 3vw;
+  overflow: hidden;
+  padding: 1vw;
+  border-radius: 1vw;
+  margin-top: 1vw;
+  background: grey;
+  color: white;
+  min-width: 45vw;
+  white-space: nowrap;
+}
+
+.item-btn {
+  border: 1px solid black;
+  background: white;
+  color: grey;
+  border-radius: 1vw;
+  margin-left: 3vw;
+}
