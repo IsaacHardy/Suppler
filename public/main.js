@@ -1,6 +1,6 @@
 var refreshBtn = document.querySelector('#refreshBtn'),
     myHeaders = new Headers(),
-    token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpc2FhYy5oYXJkeUB0aGVpcm9ueWFyZC5jb20iLCJrZXkiOiIxZGViZDkzZWZmN2YyMzczNjUxNjdiNGJhNzYwMDI2MCJ9.yBv0xgmmfdzdQ2vjGRsJcPozvDQeJ2pUAXfRCfIOHg4',
+    token = '', // Enter your token here
     newlineURL = 'https://newline.theironyard.com/api';
 
 myHeaders.append("Content-Type", "application/json");
@@ -22,6 +22,7 @@ var post = {
   cache: 'default'
 };
 
+// GET request to refresh Page with Supplementals
 function refresh() {
   fetch(newlineURL + '/supplementals', get)
     .then(function(res) {
@@ -50,6 +51,7 @@ function refresh() {
     });
 }
 
+// Add event listeners to clone buttons
 function addBtnListeners(el) {
   el.children[0].addEventListener("click", function(e) {
     var id = e.target.id;
@@ -63,6 +65,7 @@ function addBtnListeners(el) {
   });
 }
 
+// POST request to clone
 function cloneSupplemental(data) {
   var title = data.title,
       description = data.description,

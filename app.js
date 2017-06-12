@@ -1,9 +1,6 @@
-// require necessary modules
 var express = require('express'),
     http = require('http'),
-    request = require('request');
 
-// get an instance of express
 var app = express();
 
 var allowCrossDomain = function(req, res, next) {
@@ -20,7 +17,7 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 
-// configure it
+// configure
 app.configure(function(){
   app.use(allowCrossDomain);
   app.set('port', process.env.PORT || 3000);
@@ -36,32 +33,6 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-
-
-// index route
-// app.get('/', index);
-
-
-// GET User Info
-// `/user/:username`
-// app.get('/', function(req, res, next) {
-//   res.send('hello world');
-//   var url = githubURL + 'users/' + req.params.username;
-//   request({ url: url, headers: githubHeaders },
-//     function (error, response, body) {
-//       if (!error && response.statusCode == 200) {
-//         res.setHeader('Content-Type', 'application/json');
-//         res.send(body);
-//       }
-//     }
-//   );
-// });
-//
-// // GET Repos for Org
-// // `/repos/:username`
-// app.get('/repos/:username', function (req, res, next) {
-//
-// });
 
 // run the server
 http.createServer(app).listen(app.get('port'), function(){
