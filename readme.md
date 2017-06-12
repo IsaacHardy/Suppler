@@ -7,8 +7,8 @@ A quick way of copying supplementals from one instructor to another.
 * `git clone https://github.com/IsaacHardy/Suppler.git`
 * `cd suppler`
 * `npm install`
-* Head over to your account page and copy your developer API key - `https://newline.theironyard.com/account/edit`
-* Copy API key in the `/public/main.js` file located on line `3`
+* Head over to your [account page](https://newline.theironyard.com/account/edit) and copy your developer API key to your clip-board
+* Paste API key to line `3` located in the `/public/main.js` file
 * Save the file and run `node app.js`
 
 #### Using the App
