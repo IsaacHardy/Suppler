@@ -41,6 +41,7 @@ function refresh() {
           cloneBtn.innerHTML = 'Clone';
           cloneBtn.id = json.data[i].id;
           cloneBtn.className = 'item-btn';
+          cloneBtn.disabled = true; // disabled until API fix
 
           divContainer.appendChild(cloneBtn);
           list.appendChild(divContainer);
