@@ -13,5 +13,6 @@ A quick way of copying supplementals from one instructor to another.
 * Open up `http://localhost:3000/` in a new tab
 
 #### Using the App
-* Click the `Refresh` button to get latest Supplemental list
+* Click the `Refresh` button to get latest supplemental list
+* Click the `Copy Markdown` button to access the supplemental markdown to copy
 * Click the `Clone` button near the desired supplemental to create a copy for your own personal supplemental list

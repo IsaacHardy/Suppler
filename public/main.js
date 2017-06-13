@@ -1,6 +1,6 @@
 var refreshBtn = document.querySelector('#refreshBtn'),
     myHeaders = new Headers(),
-    token = '', // Enter your token here
+    token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpc2FhYy5oYXJkeUB0aGVpcm9ueWFyZC5jb20iLCJrZXkiOiJjNGM2ZDM2MDg4ODEyOTM2YmM5YjM5ODZlZDYwODIzMCJ9.8sPZ4CD_tb0zKpw5ZSSnNZn6OBNa7ThGCJO0Xz1oeE4', // Enter your token here
     newlineURL = 'https://newline.theironyard.com/api';
 
 myHeaders.append("Content-Type", "application/json");
@@ -33,6 +33,7 @@ function refresh() {
         for (var i = 0; i < json.data.length; i++) {
           var divContainer = document.createElement('div');
           var cloneBtn = document.createElement('button');
+          var copyMarkdownBtn = document.createElement('button');
 
           divContainer.innerHTML = json.data[i].title;
           divContainer.id = "cont" + json.data[i].id;
@@ -43,6 +44,11 @@ function refresh() {
           cloneBtn.className = 'item-btn';
           cloneBtn.disabled = true; // disabled until API fix
 
+          copyMarkdownBtn.innerHTML = 'Copy Markdown';
+          copyMarkdownBtn.id = json.data[i].id;
+          copyMarkdownBtn.className = 'item-btn';
+
+          divContainer.appendChild(copyMarkdownBtn);
           divContainer.appendChild(cloneBtn);
           list.appendChild(divContainer);
 
@@ -54,16 +60,24 @@ function refresh() {
 
 // Add event listeners to clone buttons
 function addBtnListeners(el) {
-  el.children[0].addEventListener("click", function(e) {
-    var id = e.target.id;
 
-    fetch(newlineURL + '/supplementals/' + id, get)
-      .then(function(res) {
-        return res.json().then(function(json) {
-          cloneSupplemental(json);
+  for (let i = 0; i < el.children.length; i++) {
+    el.children[i].addEventListener("click", function(e) {
+      var id = e.target.id;
+
+      fetch(newlineURL + '/supplementals/' + id, get)
+        .then(function(res) {
+          return res.json().then(function(json) {
+            if (i === 0) {
+              copyToClipboard(json.body);
+            } else {
+              cloneSupplemental(json);
+            }
+          });
         });
-      });
-  });
+    });
+  }
+
 }
 
 // POST request to clone
@@ -84,5 +98,9 @@ function cloneSupplemental(data) {
         refresh();
       });
     });
+}
 
+// Prompt window to allow coping to clipboard
+function copyToClipboard(text) {
+  window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 }
