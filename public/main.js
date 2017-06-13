@@ -1,6 +1,6 @@
 var refreshBtn = document.querySelector('#refreshBtn'),
     myHeaders = new Headers(),
-    token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpc2FhYy5oYXJkeUB0aGVpcm9ueWFyZC5jb20iLCJrZXkiOiJjNGM2ZDM2MDg4ODEyOTM2YmM5YjM5ODZlZDYwODIzMCJ9.8sPZ4CD_tb0zKpw5ZSSnNZn6OBNa7ThGCJO0Xz1oeE4', // Enter your token here
+    token = '', // Enter your token here
     newlineURL = 'https://newline.theironyard.com/api';
 
 myHeaders.append("Content-Type", "application/json");
@@ -102,5 +102,5 @@ function cloneSupplemental(data) {
 
 // Prompt window to allow coping to clipboard
 function copyToClipboard(text) {
-  window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+  window.prompt("Copy to clipboard: Command ⌘ + C", text);
 }
