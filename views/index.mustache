@@ -1,0 +1,20 @@
+<a href="/logout">Log Out</a>
+<div class="list">
+  {{#copied}}
+    <h2 class="copied">Copied <span class="title">{{title}}</span> to clipboard!</h2>
+  {{/copied}}
+  {{#supplers}}
+  <div id="cont + {{id}}" class="item-container">
+    {{title}}
+    <form action="/supplementals/{{id}}" method="get">
+      <button id="{{id}}" class="item-btn" type="submit" onclick="copyToClipboard">Copy Markdown</button>
+    </form>
+    <form action="/supplementals/{{id}}" method="get">
+      <button id="{{id}}" class="item-btn" type="submit" disabled>Clone</button>
+    </form>
+  </div>
+  {{/supplers}}
+  {{^supplers}}
+    <p>Please refresh your page to view supplementals.</p>
+  {{/supplers}}
+</div>
