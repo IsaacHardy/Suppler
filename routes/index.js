@@ -1,7 +1,7 @@
 const express    = require('express');
 const router     = express.Router();
 const request    = require('request');
-const cp         = require("copy-paste").global();
+
 const newlineURL = 'https://newline.theironyard.com/api';
 
 router.get("/", function(req, res) {
@@ -29,13 +29,14 @@ router.get("/supplementals", function(req, res) {
     request(options,
       function (error, response, body) {
         if (!error) {
-          res.render("index", {supplers: JSON.parse(body).data, copied: req.session.copied, title: req.session.title});
+          res.render("index", {supplers: JSON.parse(body).data, copied: req.session.copied, title: req.session.title, body: req.session.body});
         }
       });
   } else {
     res.redirect("/");
   }
 });
+
 router.get("/supplementals/:id", function(req, res){
   let options = {
     method: "GET",
@@ -53,11 +54,10 @@ router.get("/supplementals/:id", function(req, res){
     request(options,
       function (error, response, body) {
         if (!error && response.statusCode === 200) {
-          cp.copy(JSON.parse(body).body, function() {
-            req.session.copied = true;
-            req.session.title = JSON.parse(body).title;
-            res.redirect("/supplementals");
-          });
+          req.session.copied = true;
+          req.session.title = JSON.parse(body).title;
+          req.session.body = JSON.parse(body).body;
+          res.redirect("/supplementals");
         } else {
           req.session.title = "There was an error. Please try again.";
           res.redirect("/supplementals");
@@ -67,6 +67,7 @@ router.get("/supplementals/:id", function(req, res){
     res.redirect("/supplementals");
   }
 });
+
 router.post("/", function(req, res) {
   let form = {
     email: req.body.email,

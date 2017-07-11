@@ -1,16 +1,20 @@
 <a href="/logout">Log Out</a>
 <div class="list">
   {{#copied}}
-    <h2 class="copied">Copied <span class="title">{{title}}</span> to clipboard!</h2>
+    <h2 class="copied">Click this button -> <button id="clicky" data-clipboard-text="{{body}}">CLICK ME</button> to copy <span class="title">{{title}}</span> to clipboard!</h2>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+    <script type="text/javascript">
+      new Clipboard('#clicky');
+    </script>
   {{/copied}}
   {{#supplers}}
-  <div id="cont + {{id}}" class="item-container">
+  <div class="item-container">
     {{title}}
     <form action="/supplementals/{{id}}" method="get">
-      <button id="{{id}}" class="item-btn" type="submit" onclick="copyToClipboard">Copy Markdown</button>
+      <button class="item-btn" type="submit">Copy Markdown</button>
     </form>
     <form action="/supplementals/{{id}}" method="get">
-      <button id="{{id}}" class="item-btn" type="submit" disabled>Clone</button>
+      <button class="item-btn" type="submit" disabled>Clone</button>
     </form>
   </div>
   {{/supplers}}
