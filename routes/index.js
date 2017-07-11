@@ -1,7 +1,7 @@
 const express    = require('express');
 const router     = express.Router();
 const request    = require('request');
-const cp         = require("copy-paste");
+const cp         = require("copy-paste").global();
 const newlineURL = 'https://newline.theironyard.com/api';
 
 router.get("/", function(req, res) {
