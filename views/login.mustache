@@ -1,6 +1,10 @@
+<span class="title">{{error}}</span>
+
+
+<div class="row">
+  <div class="col">
 <h2>Please login with your Newline email and password:</h2>
 <form class="login-container" action="/" method="post">
-  <span class="title">{{error}}</span>
   <div>
     Email: <input class="email-input" type="text" name="email">
   </div>
@@ -9,3 +13,17 @@
   </div>
   <input type="submit" value="Submit">
 </form>
+
+</div>
+<div class="col">
+
+
+<h3>OR enter your API Token directly:</h3>
+<form class="login-container" action="/token" method="post">
+  <div>
+    Token: <input class="token-input" type="text" name="token">
+  </div>
+  <input type="submit" value="Submit">
+</form>
+</div>
+</div>

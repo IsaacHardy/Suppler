@@ -13,9 +13,10 @@ router.get("/", function(req, res) {
 });
 
 router.get("/supplementals", function(req, res) {
+  const pageNumber = req.query.page || 1
   let options = {
     method: "GET",
-    uri: newlineURL + "/supplementals",
+    uri: newlineURL + "/supplementals?page=" + pageNumber,
     auth: {
       'bearer': req.session.token
     },
@@ -29,7 +30,19 @@ router.get("/supplementals", function(req, res) {
     request(options,
       function (error, response, body) {
         if (!error) {
-          res.render("index", {supplers: JSON.parse(body).data, copied: req.session.copied, title: req.session.title, body: req.session.body});
+          const page = JSON.parse(body)
+          const prevLink = (page.links.prev || "").replace('https://newline.theironyard.com/api/supplementals?page=', '')
+          const nextLink = (page.links.next || "").replace('https://newline.theironyard.com/api/supplementals?page=', '')
+          res.render("index", {
+            supplers: page.data,
+            copied: req.session.copied,
+            title: req.session.title,
+            body: req.session.body,
+            currentPage: pageNumber,
+            totalPages: page.meta.total_pages,
+            prevLink: prevLink,
+            nextLink: nextLink
+          });
         }
       });
   } else {
@@ -67,6 +80,11 @@ router.get("/supplementals/:id", function(req, res){
     res.redirect("/supplementals");
   }
 });
+
+router.post("/token", function(req,res){
+  req.session.token = req.body.token
+  res.redirect("/supplementals");
+})
 
 router.post("/", function(req, res) {
   let form = {
