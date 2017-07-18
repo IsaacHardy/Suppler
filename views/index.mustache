@@ -7,6 +7,7 @@
       new Clipboard('#clicky');
     </script>
   {{/copied}}
+  <h2>Supplemtals are ordered with the most current first</h2>
   {{#supplers}}
   <div class="item-container">
     {{title}}
@@ -21,4 +22,27 @@
   {{^supplers}}
     <p>Please refresh your page to view supplementals.</p>
   {{/supplers}}
+
+  <div class="pagination">
+    <div class="">
+      Current Page: {{currentPage}}. Total Pages: {{totalPages}}
+    </div>
+
+    <div class="">
+      {{#prevLink}}
+      <a href="/supplementals?page={{prevLink}}">Newer Page</a>
+      {{/prevLink}}
+    </div>
+
+    <div class="">
+      {{#nextLink}}
+      <a href="/supplementals?page={{nextLink}}">Older Page</a>
+      {{/nextLink}}
+
+    </div>
+
+  </div>
+
+
+
 </div>

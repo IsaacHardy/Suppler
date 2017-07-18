@@ -5,6 +5,17 @@
   flex-direction: column;
 }
 
+.row, .pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.pagination {
+  padding: 1em;
+  width: 100%;
+}
+
 #refreshBtn {
   background: white;
   color: grey;
